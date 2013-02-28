@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="ESDR.PGA.PGAWebService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="ESDR.PGA.PGAWebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="ESDR.PGA.PGAWebService">
+      <s:element name="GetHoleByHole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TournamentID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHoleByHoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHoleByHoleResult" type="tns:HoleByHole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="HoleByHole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="player" type="tns:HoleByHolePlayer" />
+        </s:sequence>
+        <s:attribute name="tournamentid" type="s:string" />
+        <s:attribute name="status" type="s:string" />
+        <s:attribute name="TournName" type="s:string" />
+        <s:attribute name="LeaderboardMessage" type="s:string" />
+        <s:attribute name="CutRnd" type="s:string" />
+        <s:attribute name="CutCount" type="s:string" />
+        <s:attribute name="CutScore" type="s:string" />
+        <s:attribute name="CurrentRound" type="s:string" />
+      </s:complexType>
+      <s:complexType name="HoleByHolePlayer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="round" type="tns:Round" />
+        </s:sequence>
+        <s:attribute name="playerid" type="s:long" use="required" />
+        <s:attribute name="firstname" type="s:string" />
+        <s:attribute name="lastname" type="s:string" />
+        <s:attribute name="currentposition" type="s:int" use="required" />
+        <s:attribute name="currentround" type="s:int" use="required" />
+        <s:attribute name="currenthole" type="s:short" use="required" />
+        <s:attribute name="playerstatus" type="s:string" />
+        <s:attribute name="ytdcuppointsstart" type="s:long" use="required" />
+        <s:attribute name="ytdcuprankstart" type="s:string" />
+        <s:attribute name="ytdcuptrailptsstart" type="s:long" use="required" />
+        <s:attribute name="ytdcuppointsprj" type="s:long" use="required" />
+        <s:attribute name="ytdcuprankprj" type="s:string" />
+        <s:attribute name="ytdcuptrailptsprj" type="s:long" use="required" />
+        <s:attribute name="evtcupptsprj" type="s:long" use="required" />
+        <s:attribute name="cupbonusmoney" type="s:long" use="required" />
+        <s:attribute name="moneywon" type="s:long" use="required" />
+        <s:attribute name="tournparrel" type="s:string" />
+        <s:attribute name="tournstroke" type="s:long" use="required" />
+        <s:attribute name="eagles" type="s:double" use="required" />
+        <s:attribute name="birdies" type="s:double" use="required" />
+        <s:attribute name="pars" type="s:double" use="required" />
+        <s:attribute name="bogeys" type="s:double" use="required" />
+        <s:attribute name="doubles" type="s:double" use="required" />
+        <s:attribute name="penalties" type="s:double" use="required" />
+        <s:attribute name="drivedistavg" type="s:double" use="required" />
+        <s:attribute name="fairwayshit" type="s:double" use="required" />
+        <s:attribute name="fairwaysopp" type="s:double" use="required" />
+        <s:attribute name="longestdrive" type="s:double" use="required" />
+        <s:attribute name="gir" type="s:double" use="required" />
+        <s:attribute name="giropp" type="s:double" use="required" />
+        <s:attribute name="puttsgir" type="s:double" use="required" />
+        <s:attribute name="avgputtsgir" type="s:double" use="required" />
+        <s:attribute name="sandsaves" type="s:double" use="required" />
+        <s:attribute name="sandsavesopp" type="s:double" use="required" />
+      </s:complexType>
+      <s:complexType name="Round">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="hole" type="tns:Hole" />
+        </s:sequence>
+        <s:attribute name="round_number" type="s:int" use="required" />
+        <s:attribute name="courseid" type="s:long" use="required" />
+        <s:attribute name="eagles" type="s:double" use="required" />
+        <s:attribute name="birdies" type="s:double" use="required" />
+        <s:attribute name="pars" type="s:double" use="required" />
+        <s:attribute name="bogeys" type="s:double" use="required" />
+        <s:attribute name="doubles" type="s:double" use="required" />
+        <s:attribute name="penalties" type="s:double" use="required" />
+        <s:attribute name="drivedistavg" type="s:double" use="required" />
+        <s:attribute name="fairwayshit" type="s:double" use="required" />
+        <s:attribute name="fairwaysopp" type="s:double" use="required" />
+        <s:attribute name="longestdrive" type="s:double" use="required" />
+        <s:attribute name="gir" type="s:double" use="required" />
+        <s:attribute name="giropp" type="s:double" use="required" />
+        <s:attribute name="puttsgir" type="s:double" use="required" />
+        <s:attribute name="avgputtsgir" type="s:double" use="required" />
+        <s:attribute name="sandsaves" type="s:double" use="required" />
+        <s:attribute name="sandsavesopp" type="s:double" use="required" />
+      </s:complexType>
+      <s:complexType name="Hole">
+        <s:attribute name="number" type="s:int" use="required" />
+        <s:attribute name="holeid" type="s:long" use="required" />
+        <s:attribute name="par" type="s:int" use="required" />
+        <s:attribute name="strokes" type="s:int" use="required" />
+        <s:attribute name="timestamp" type="s:dateTime" use="required" />
+      </s:complexType>
+      <s:element name="GetPlayers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPlayersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlayersResult" type="tns:Golfers" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Golfers">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="player" type="tns:Golfer" />
+        </s:sequence>
+        <s:attribute name="status" type="s:string" />
+      </s:complexType>
+      <s:complexType name="Golfer">
+        <s:attribute name="player_id" type="s:long" use="required" />
+        <s:attribute name="firstname" type="s:string" />
+        <s:attribute name="middlename" type="s:string" />
+        <s:attribute name="lastname" type="s:string" />
+        <s:attribute name="height" type="s:string" />
+        <s:attribute name="weight" type="s:int" use="required" />
+        <s:attribute name="hand" type="s:string" />
+        <s:attribute name="status" type="s:string" />
+        <s:attribute name="college" type="s:string" />
+        <s:attribute name="birthcity" type="s:string" />
+        <s:attribute name="birthstate" type="s:string" />
+        <s:attribute name="birthcountry" type="s:string" />
+        <s:attribute name="birthdate" type="s:date" use="required" />
+        <s:attribute name="prodebutyear" type="s:gYear" />
+        <s:attribute name="amateur" type="s:string" />
+        <s:attribute name="active_league" type="s:string" />
+      </s:complexType>
+      <s:element name="GetTournaments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Year" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTournamentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTournamentsResult" type="tns:TournamentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TournamentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tournament" type="tns:Tournament" />
+        </s:sequence>
+        <s:attribute name="year" type="s:string" />
+        <s:attribute name="status" type="s:string" />
+      </s:complexType>
+      <s:complexType name="Tournament">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="course" type="tns:Course" />
+        </s:sequence>
+        <s:attribute name="tourn_id" type="s:long" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="pgatourn_id" type="s:string" />
+        <s:attribute name="event_id" type="s:string" />
+        <s:attribute name="format" type="s:string" />
+        <s:attribute name="start_date" type="s:date" use="required" />
+        <s:attribute name="end_date" type="s:date" use="required" />
+        <s:attribute name="purse" type="s:long" use="required" />
+        <s:attribute name="rounds" type="s:int" use="required" />
+        <s:attribute name="location" type="s:string" />
+        <s:attribute name="status" type="s:string" />
+        <s:attribute name="type" type="s:string" />
+        <s:attribute name="timezone" type="s:string" />
+        <s:attribute name="host_course_id" type="s:string" />
+        <s:attribute name="defchampid" type="s:string" />
+        <s:attribute name="gmtoffset" type="s:string" />
+      </s:complexType>
+      <s:complexType name="Course">
+        <s:attribute name="course_id" type="s:long" use="required" />
+        <s:attribute name="pgacourse_id" type="s:long" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="acronym" type="s:string" />
+        <s:attribute name="par" type="s:int" use="required" />
+        <s:attribute name="yards" type="s:long" use="required" />
+        <s:attribute name="par_in" type="s:int" use="required" />
+        <s:attribute name="par_out" type="s:int" use="required" />
+        <s:attribute name="location" type="s:string" />
+      </s:complexType>
+      <s:element name="GetTeeTimes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TournamentID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeeTimesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTeeTimesResult" type="tns:TeeTimes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TeeTimes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="teetime" type="tns:TeeTime" />
+        </s:sequence>
+        <s:attribute name="tournamentid" type="s:string" />
+        <s:attribute name="status" type="s:string" />
+      </s:complexType>
+      <s:complexType name="TeeTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="golfer" type="tns:TeetimePlayer" />
+        </s:sequence>
+        <s:attribute name="courseid" type="s:long" use="required" />
+        <s:attribute name="round" type="s:int" use="required" />
+        <s:attribute name="starttee" type="s:int" use="required" />
+        <s:attribute name="group" type="s:int" use="required" />
+        <s:attribute name="teedatetime" type="s:dateTime" use="required" />
+      </s:complexType>
+      <s:complexType name="TeetimePlayer">
+        <s:attribute name="player_id" type="s:long" use="required" />
+        <s:attribute name="firstname" type="s:string" />
+        <s:attribute name="lastname" type="s:string" />
+        <s:attribute name="amateur" type="s:string" />
+        <s:attribute name="playerstatus" type="s:string" />
+      </s:complexType>
+      <s:element name="HoleByHole" nillable="true" type="tns:HoleByHole" />
+      <s:element name="Golfers" nillable="true" type="tns:Golfers" />
+      <s:element name="TournamentInfo" nillable="true" type="tns:TournamentInfo" />
+      <s:element name="TeeTimes" nillable="true" type="tns:TeeTimes" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetHoleByHoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHoleByHole" />
+  </wsdl:message>
+  <wsdl:message name="GetHoleByHoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHoleByHoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlayers" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTournaments" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTournamentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeeTimes" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeeTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHoleByHoleHttpGetIn">
+    <wsdl:part name="TournamentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHoleByHoleHttpGetOut">
+    <wsdl:part name="Body" element="tns:HoleByHole" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersHttpGetIn" />
+  <wsdl:message name="GetPlayersHttpGetOut">
+    <wsdl:part name="Body" element="tns:Golfers" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsHttpGetIn">
+    <wsdl:part name="Year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsHttpGetOut">
+    <wsdl:part name="Body" element="tns:TournamentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesHttpGetIn">
+    <wsdl:part name="TournamentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesHttpGetOut">
+    <wsdl:part name="Body" element="tns:TeeTimes" />
+  </wsdl:message>
+  <wsdl:message name="GetHoleByHoleHttpPostIn">
+    <wsdl:part name="TournamentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHoleByHoleHttpPostOut">
+    <wsdl:part name="Body" element="tns:HoleByHole" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersHttpPostIn" />
+  <wsdl:message name="GetPlayersHttpPostOut">
+    <wsdl:part name="Body" element="tns:Golfers" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsHttpPostIn">
+    <wsdl:part name="Year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTournamentsHttpPostOut">
+    <wsdl:part name="Body" element="tns:TournamentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesHttpPostIn">
+    <wsdl:part name="TournamentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeeTimesHttpPostOut">
+    <wsdl:part name="Body" element="tns:TeeTimes" />
+  </wsdl:message>
+  <wsdl:portType name="PGAWebServiceSoap">
+    <wsdl:operation name="GetHoleByHole">
+      <wsdl:input message="tns:GetHoleByHoleSoapIn" />
+      <wsdl:output message="tns:GetHoleByHoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <wsdl:input message="tns:GetPlayersSoapIn" />
+      <wsdl:output message="tns:GetPlayersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <wsdl:input message="tns:GetTournamentsSoapIn" />
+      <wsdl:output message="tns:GetTournamentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <wsdl:input message="tns:GetTeeTimesSoapIn" />
+      <wsdl:output message="tns:GetTeeTimesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PGAWebServiceHttpGet">
+    <wsdl:operation name="GetHoleByHole">
+      <wsdl:input message="tns:GetHoleByHoleHttpGetIn" />
+      <wsdl:output message="tns:GetHoleByHoleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <wsdl:input message="tns:GetPlayersHttpGetIn" />
+      <wsdl:output message="tns:GetPlayersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <wsdl:input message="tns:GetTournamentsHttpGetIn" />
+      <wsdl:output message="tns:GetTournamentsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <wsdl:input message="tns:GetTeeTimesHttpGetIn" />
+      <wsdl:output message="tns:GetTeeTimesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PGAWebServiceHttpPost">
+    <wsdl:operation name="GetHoleByHole">
+      <wsdl:input message="tns:GetHoleByHoleHttpPostIn" />
+      <wsdl:output message="tns:GetHoleByHoleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <wsdl:input message="tns:GetPlayersHttpPostIn" />
+      <wsdl:output message="tns:GetPlayersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <wsdl:input message="tns:GetTournamentsHttpPostIn" />
+      <wsdl:output message="tns:GetTournamentsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <wsdl:input message="tns:GetTeeTimesHttpPostIn" />
+      <wsdl:output message="tns:GetTeeTimesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PGAWebServiceSoap" type="tns:PGAWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHoleByHole">
+      <soap:operation soapAction="ESDR.PGA.PGAWebService/GetHoleByHole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <soap:operation soapAction="ESDR.PGA.PGAWebService/GetPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <soap:operation soapAction="ESDR.PGA.PGAWebService/GetTournaments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <soap:operation soapAction="ESDR.PGA.PGAWebService/GetTeeTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PGAWebServiceSoap12" type="tns:PGAWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHoleByHole">
+      <soap12:operation soapAction="ESDR.PGA.PGAWebService/GetHoleByHole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <soap12:operation soapAction="ESDR.PGA.PGAWebService/GetPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <soap12:operation soapAction="ESDR.PGA.PGAWebService/GetTournaments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <soap12:operation soapAction="ESDR.PGA.PGAWebService/GetTeeTimes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PGAWebServiceHttpGet" type="tns:PGAWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetHoleByHole">
+      <http:operation location="/GetHoleByHole" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <http:operation location="/GetPlayers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <http:operation location="/GetTournaments" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <http:operation location="/GetTeeTimes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PGAWebServiceHttpPost" type="tns:PGAWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetHoleByHole">
+      <http:operation location="/GetHoleByHole" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <http:operation location="/GetPlayers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTournaments">
+      <http:operation location="/GetTournaments" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeeTimes">
+      <http:operation location="/GetTeeTimes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PGAWebService">
+    <wsdl:port name="PGAWebServiceSoap" binding="tns:PGAWebServiceSoap">
+      <soap:address location="http://stpga.corp.disney.com/golfdev/pgaoutput.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PGAWebServiceSoap12" binding="tns:PGAWebServiceSoap12">
+      <soap12:address location="http://stpga.corp.disney.com/golfdev/pgaoutput.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PGAWebServiceHttpGet" binding="tns:PGAWebServiceHttpGet">
+      <http:address location="http://stpga.corp.disney.com/golfdev/pgaoutput.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PGAWebServiceHttpPost" binding="tns:PGAWebServiceHttpPost">
+      <http:address location="http://stpga.corp.disney.com/golfdev/pgaoutput.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
